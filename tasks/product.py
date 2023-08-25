@@ -6,8 +6,9 @@ __all__ = (
 
 
 def cartesian_product(arr1: list[Any], arr2: list[Any]) -> list:
-    """
-    Должна возвращать все пары элементы двух массивов:
-    cartesian_product([1, 2], [3, 4]) == [(1, 3), (1, 4), (2, 3), (2, 4)]
-    """
-    raise NotImplementedError
+    newarr = []
+    minLen = min(len(arr1),len(arr2))
+    for i in range(0, minLen):
+        for i2 in range(0, minLen):
+            newarr.append([arr1[i],arr2[i2]])
+    return newarr
