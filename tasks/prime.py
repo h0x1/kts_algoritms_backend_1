@@ -4,7 +4,7 @@ __all__ = (
 
 
 def is_prime(number: int) -> bool:
-    if(number == 1):
+    if(number == 1 or number == 0):
         return False
     mod = 2
     for mod in range(mod, number, mod*mod):
