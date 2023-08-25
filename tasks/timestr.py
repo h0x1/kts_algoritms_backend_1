@@ -11,4 +11,4 @@ def seconds_to_str(seconds: int) -> str:
         day = hour//24
         hour = hour%24
         return ( (day > 0 and "%02dd%02dh%02dm"%(day,hour,min)) or (hour > 0 and "%02dh%02dm"%(hour,min)) or (min > 0 and "%02dm"%(min)) or "") + "%02ds"%(sec)
-    return "seconds < 0"
+    return "00s"
