@@ -6,7 +6,6 @@ __all__ = (
 def even_odd(arr: list[int]) -> float:
     chetSum = 0
     nechetSum = 0
-    i=0
     for number in arr:
         if number%2 == 0:
             chetSum+=number
