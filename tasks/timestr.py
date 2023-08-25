@@ -2,7 +2,6 @@ __all__ = (
     'seconds_to_str',
 )
 
-
 def seconds_to_str(seconds: int) -> str:
     if seconds > 0:
         sec = seconds%60
