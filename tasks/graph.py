@@ -22,13 +22,30 @@ class Node:
 
     __repr__ = __str__
 
+arr = []
+def addToL(value: Node) -> list[Node]:
+    global arr
+    if not value in arr:
+        arr.append(value)
 
 class Graph:
     def __init__(self, root: Node):
         self._root = root
 
     def dfs(self) -> list[Node]:
-        raise NotImplementedError
+        if len(self._root.outbound) <= 0:
+            return
+        num_of_edges_out = len(self._root.outbound)
+        for i in range(num_of_edges_out):
+            tempNodePointer = self._root.outbound[i]
+            for v in range(len(tempNodePointer.inbound)):
+                if tempNodePointer.inbound[v]:
+                    addToL(tempNodePointer.inbound[v])
+            if not tempNodePointer in arr:     
+                addToL(tempNodePointer)
+                gr = Graph(self._root.outbound[i])
+                gr.dfs()
+        return arr
 
     def bfs(self) -> list[Node]:
         raise NotImplementedError
