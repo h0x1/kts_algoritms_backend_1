@@ -17,22 +17,25 @@ class Node:
         self.outbound.append(other)
         other.inbound.append(self)
 
+        
+
     def __str__(self):
         return f'Node({repr(self.value)})'
 
     __repr__ = __str__
 
+    
 arr = []
 def addToL(value: Node) -> list[Node]:
-    global arr
     if not value in arr:
         arr.append(value)
 
+    
 class Graph:
     def __init__(self, root: Node):
         self._root = root
 
-    def dfs(self) -> list[Node]:
+    def rec_dfs(self) -> list[Node]:
         if len(self._root.outbound) <= 0:
             return
         num_of_edges_out = len(self._root.outbound)
@@ -41,11 +44,16 @@ class Graph:
             for v in range(len(tempNodePointer.inbound)):
                 if tempNodePointer.inbound[v]:
                     addToL(tempNodePointer.inbound[v])
-            if not tempNodePointer in arr:     
+            if not tempNodePointer in arr:
                 addToL(tempNodePointer)
                 gr = Graph(self._root.outbound[i])
-                gr.dfs()
+                gr.rec_dfs()
         return arr
+    
+    def dfs(self) -> list[Node]:
+        global arr
+        arr = []
+        return self.rec_dfs()
 
     def bfs(self) -> list[Node]:
         raise NotImplementedError
