@@ -47,6 +47,23 @@ class Graph:
                 gr = Graph(self._root.outbound[i])
                 gr.rec_dfs()
         return arr
+        
+    def rec_bfs(self) -> list[Node]:
+        if len(self._root.outbound) <= 0:
+            if len(self._root.inbound) == 0:
+                addToL(self._root)
+                return arr
+            return
+        addToL(self._root)
+        tempNodeList = []
+        for i in range(len(self._root.outbound)):
+            if not self._root.outbound[i] in arr:
+                addToL(self._root.outbound[i])
+                tempNodeList.append(self._root.outbound[i])
+        for v in range(len(tempNodeList)):
+                gr = Graph(tempNodeList[v])
+                gr.rec_bfs()
+        return arr    
     
     def dfs(self) -> list[Node]:
         global arr
@@ -54,4 +71,6 @@ class Graph:
         return self.rec_dfs()
 
     def bfs(self) -> list[Node]:
-        raise NotImplementedError
+        global arr
+        arr = []
+        return self.rec_bfs()
