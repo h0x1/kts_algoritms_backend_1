@@ -35,21 +35,19 @@ class Graph:
         self._root = root
 
     def rec_dfs(self) -> list[Node]:
+
         if len(self._root.outbound) <= 0:
             if len(self._root.inbound) == 0:
                 addToL(self._root)
                 return arr
             return
         
-        
-        num_of_edges_out = len(self._root.outbound)
-        for i in range(num_of_edges_out):
-            tempNodePointer = self._root.outbound[i]
-            for v in range(len(tempNodePointer.inbound)):
-                if tempNodePointer.inbound[v]:
-                    addToL(tempNodePointer.inbound[v])
-            if not tempNodePointer in arr:
-                addToL(tempNodePointer)
+        if not self._root in arr:
+            addToL(self._root)
+
+        for i in range(len(self._root.outbound)):
+            if not self._root.outbound[i] in arr:
+                addToL(self._root.outbound[i])
                 gr = Graph(self._root.outbound[i])
                 gr.rec_dfs()
         return arr
