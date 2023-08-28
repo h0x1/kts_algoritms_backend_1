@@ -30,14 +30,18 @@ def addToL(value: Node) -> list[Node]:
     if not value in arr:
         arr.append(value)
 
-    
 class Graph:
     def __init__(self, root: Node):
         self._root = root
 
     def rec_dfs(self) -> list[Node]:
         if len(self._root.outbound) <= 0:
+            if len(self._root.inbound) == 0:
+                addToL(self._root)
+                return arr
             return
+        
+        
         num_of_edges_out = len(self._root.outbound)
         for i in range(num_of_edges_out):
             tempNodePointer = self._root.outbound[i]
